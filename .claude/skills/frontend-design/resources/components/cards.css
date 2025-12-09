@@ -1,0 +1,319 @@
+/**
+ * Card Component System
+ * Versatile card styles for various use cases
+ */
+
+/* === BASE CARD === */
+
+.card {
+  --card-padding: var(--space-m, 1.5rem);
+  --card-radius: 1rem;
+  --card-bg: white;
+  --card-border: var(--color-neutral-200, #e5e7eb);
+  
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: var(--card-padding);
+}
+
+.card-header {
+  padding: var(--card-padding);
+  padding-bottom: 0;
+}
+
+.card-footer {
+  padding: var(--card-padding);
+  padding-top: 0;
+}
+
+/* === STYLE VARIANTS === */
+
+/* Elevated Card */
+.card-elevated {
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: 
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.card-elevated:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Bordered Card */
+.card-bordered {
+  border: 1px solid var(--card-border);
+}
+
+/* Flat Card */
+.card-flat {
+  background: var(--color-neutral-50, #f9fafb);
+}
+
+/* Glass Card */
+.card-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Gradient Card */
+.card-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Neomorphic Card */
+.card-neo {
+  background: var(--color-neutral-100, #f3f4f6);
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.9);
+}
+
+/* Dark Card */
+.card-dark {
+  --card-bg: var(--color-neutral-900, #111827);
+  --card-border: var(--color-neutral-700, #374151);
+  color: white;
+}
+
+/* === INTERACTIVE CARDS === */
+
+/* Clickable Card */
+.card-clickable {
+  cursor: pointer;
+  transition: 
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.card-clickable:hover {
+  transform: translateY(-2px);
+}
+
+.card-clickable:active {
+  transform: translateY(0);
+}
+
+/* Selectable Card */
+.card-selectable {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 150ms ease;
+}
+
+.card-selectable:hover {
+  border-color: var(--color-primary-200, #bfdbfe);
+}
+
+.card-selectable.selected {
+  border-color: var(--color-primary-500, #3b82f6);
+  background: var(--color-primary-50, #eff6ff);
+}
+
+/* === CARD WITH IMAGE === */
+
+.card-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image-top {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.card-image-left {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.card-image-left .card-image-side {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === CARD OVERLAYS === */
+
+.card-overlay {
+  position: relative;
+}
+
+.card-overlay-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--card-padding);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  color: white;
+}
+
+/* === HORIZONTAL CARD === */
+
+.card-horizontal {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.card-horizontal .card-image {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === CARD GRID === */
+
+.card-grid {
+  display: grid;
+  gap: var(--space-m, 1.5rem);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Masonry Layout */
+.card-masonry {
+  columns: 3 300px;
+  column-gap: var(--space-m, 1.5rem);
+}
+
+.card-masonry .card {
+  break-inside: avoid;
+  margin-bottom: var(--space-m, 1.5rem);
+}
+
+/* === CARD STATES === */
+
+/* Loading State */
+.card-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  animation: card-shimmer 1.5s infinite;
+}
+
+@keyframes card-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Skeleton Card */
+.card-skeleton .skeleton-line {
+  background: var(--color-neutral-200, #e5e7eb);
+  border-radius: 4px;
+  height: 1em;
+  margin-bottom: 0.5em;
+}
+
+.card-skeleton .skeleton-line:last-child {
+  width: 60%;
+}
+
+.card-skeleton .skeleton-image {
+  background: var(--color-neutral-200, #e5e7eb);
+  aspect-ratio: 16 / 9;
+}
+
+/* === SPECIAL CARDS === */
+
+/* Profile Card */
+.card-profile {
+  text-align: center;
+}
+
+.card-profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-s, 1rem);
+  object-fit: cover;
+}
+
+/* Pricing Card */
+.card-pricing {
+  text-align: center;
+}
+
+.card-pricing-price {
+  font-size: var(--step-4, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.card-pricing-period {
+  font-size: var(--step--1, 0.875rem);
+  color: var(--color-neutral-500, #6b7280);
+}
+
+.card-pricing.featured {
+  transform: scale(1.05);
+  border: 2px solid var(--color-primary-500, #3b82f6);
+}
+
+/* Stat Card */
+.card-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s, 1rem);
+}
+
+.card-stat-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-100, #dbeafe);
+  color: var(--color-primary-600, #2563eb);
+  border-radius: 12px;
+}
+
+.card-stat-value {
+  font-size: var(--step-3, 1.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.card-stat-label {
+  font-size: var(--step--1, 0.875rem);
+  color: var(--color-neutral-500, #6b7280);
+}
+
+/* === REDUCED MOTION === */
+
+@media (prefers-reduced-motion: reduce) {
+  .card-elevated:hover,
+  .card-clickable:hover {
+    transform: none;
+  }
+  
+  .card-loading::after {
+    animation: none;
+  }
+}
